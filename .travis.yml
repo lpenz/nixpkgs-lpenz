@@ -3,7 +3,7 @@ language: generic
 stages:
   - test
   - name: deploy
-    if: branch = publish
+    if: branch = master
 jobs:
   include:
     - stage: test
@@ -13,3 +13,17 @@ jobs:
     - name: build
       language: nix
       script: nix-build
+    - stage: deploy
+      name: deploy
+      script:
+        - mkdir -p _output/
+        - touch _output/index.html
+        - tar -cJf _output/nixexprs.tar.xz default.nix execpermfix.nix --transform "s,^,${PWD##*/}/,"
+      deploy:
+        provider: pages
+        skip-cleanup: true
+        github-token: "$GITHUB_TOKEN"
+        local_dir: _output
+        target-branch: gh-pages
+        on:
+          branch: master
