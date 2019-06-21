@@ -15,10 +15,8 @@ jobs:
       script: nix-build
     - stage: deploy
       name: deploy
-      script:
-        - mkdir -p _output/
-        - touch _output/index.html
-        - tar -cJf _output/nixexprs.tar.xz default.nix execpermfix.nix --transform "s,^,${PWD##*/}/,"
+      language: nix
+      script: ./channel-build _output
       deploy:
         provider: pages
         skip-cleanup: true
