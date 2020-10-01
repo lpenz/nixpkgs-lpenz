@@ -12,7 +12,12 @@ jobs:
       script: docker run --rm -v "$PWD:$PWD" -e "RWD=$PWD" -e "MY_UID=$UID" lpenz/omnilint
     - name: build
       language: nix
-      script: nix-build
+      script:
+        - docker run -d --name nix -v "$PWD:$PWD" nixorg/nix sleep 9999999999
+        - docker exec -t nix /bin/sh -c "set -e -x; nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs; nix-channel --update"
+        # deps:
+        - docker exec -t nix /bin/sh -c "set -e -x; nix-env -iA nixpkgs.bash nixpkgs.gnutar"
+        - docker exec -w "$PWD" -e NIX_CACHE_PRIV_KEY -t nix /bin/sh -c "set -e -x; ./channel-build _output"
     - stage: deploy
       name: deploy
       language: nix
