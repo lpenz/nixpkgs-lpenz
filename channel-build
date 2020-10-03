@@ -22,13 +22,13 @@ touch "$OUTPUT/index.html"
 printf 'https://www.lpenz.org/nixpkgs-lpenz/cache' > "$OUTPUT/binary-cache-url"
 
 : Build
-OUT_PATHS=$(nix-build)
+mapfile -t OUT_PATHS < <( nix-build )
 
 : Populate cache
 export NIX_SECRET_KEY_FILE="$PWD/nix-cache-priv-key.pem"
 echo "$NIX_CACHE_PRIV_KEY" > "$NIX_SECRET_KEY_FILE"
-nix sign-paths -k "$NIX_SECRET_KEY_FILE" "$OUT_PATHS"
-nix copy --to "file:///$PWD/$OUTPUT/cache" "$OUT_PATHS"
+nix sign-paths -k "$NIX_SECRET_KEY_FILE" "${OUT_PATHS[@]}"
+nix copy --to "file:///$PWD/$OUTPUT/cache" "${OUT_PATHS[@]}"
 nix path-info --store "file:///$PWD/$OUTPUT/cache" --json
 : Done
 

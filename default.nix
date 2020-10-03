@@ -7,6 +7,7 @@ let
 
   self = {
     execpermfix = callPackage ./execpermfix.nix {};
+    ogle = callPackage ./ogle.nix {};
   };
 in
 self
