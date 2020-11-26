@@ -1,0 +1,6 @@
+---
+name: nix-channel-build
+description: 'Build a nix-channel'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
