@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/lpenz/nixpkgs-lpenz.png?branch=master)](https://travis-ci.com/lpenz/nixpkgs-lpenz) 
+[![CI](https://github.com/lpenz/nixpkgs-lpenz/workflows/CI/badge.svg)](https://github.com/lpenz/nixpkgs-lpenz/actions)
 
 nixpkgs-lpenz
 =============
