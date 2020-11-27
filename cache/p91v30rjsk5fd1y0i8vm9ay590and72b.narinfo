@@ -1,0 +1,10 @@
+StorePath: /nix/store/p91v30rjsk5fd1y0i8vm9ay590and72b-execpermfix-1.0.7
+URL: nar/12894i2mnm9ksanzzyg2hbf71pwnlczrn66f279va65pa7nqv97r.nar.xz
+Compression: xz
+FileHash: sha256:12894i2mnm9ksanzzyg2hbf71pwnlczrn66f279va65pa7nqv97r
+FileSize: 4836
+NarHash: sha256:1cpwyc0znkh5z1wg6z7pp4iqjhj8cjxfqvzaxga0m2kvckl0zjhz
+NarSize: 18728
+References: a6rnjp15qgp8a699dlffqj94hzy1nldg-glibc-2.32
+Deriver: g1nz5jwhcv04x582p955a8fmgbfppyh3-execpermfix-1.0.7.drv
+Sig: lpenz.org:v+u90c0zCubb08vGaZPHNsogTqzc/9bfqviELoHgs63St+AnWTSZ1D1aog6Ost3Rr1bswNE3el83/ZNAwvSBAA==
