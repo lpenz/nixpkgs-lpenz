@@ -1,0 +1,10 @@
+StorePath: /nix/store/gafigwfaimlziam6qhw1m8dz4h952g1n-glibc-2.32-35
+URL: nar/0lc57sajmin41dg8kaghkf0dandvbs55gr8gm34qrap0kyf5lj4r.nar.xz
+Compression: xz
+FileHash: sha256:0lc57sajmin41dg8kaghkf0dandvbs55gr8gm34qrap0kyf5lj4r
+FileSize: 6473492
+NarHash: sha256:0s50z590v9bq41ikianras4kxzcf4j51mgydv2p7za252c630s2v
+NarSize: 31080936
+References: gafigwfaimlziam6qhw1m8dz4h952g1n-glibc-2.32-35 hn0qr5sk0bvvnjyg6r3yrkwbyl0gn953-libidn2-2.3.0
+Deriver: x9agc8vxdnmai3q41gsgf732fc5v0xdd-glibc-2.32-35.drv
+Sig: cache.nixos.org-1:5aRkU3qbbJTszTOSLK2x7yA61WDEP3BvYU06YbWmKD2gxIR6uVN0Z4q8bYlzDUyKx5hNJl/YxLUazuzIi91cDw==
