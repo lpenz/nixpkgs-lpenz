@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ -z "$NIX_CACHE_PRIV_KEY" ]; then
+    echo Please export a valid NIX_CACHE_PRIV_KEY >&2
+    exit 1
+fi
+
+IMAGE="${PWD##*/}"
+CONTAINER="${PWD##*/}"
+
+set -e -x
+
+docker rm -f "$CONTAINER"
+docker build -t "$CONTAINER" .
+docker run --rm -v "$PWD:$PWD" -w "$PWD" --name "$CONTAINER" -e NIX_CACHE_PRIV_KEY "$IMAGE"
