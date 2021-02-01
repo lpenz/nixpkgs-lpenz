@@ -1,7 +1,7 @@
 { rustPlatform, fetchFromGitHub }:
 
 rustPlatform.buildRustPackage rec {
-  name = "ogle";
+  name = "ogle-${version}";
   version = "1.3.0";
 
   src = fetchFromGitHub {
