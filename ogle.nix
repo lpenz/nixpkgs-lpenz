@@ -2,14 +2,14 @@
 
 rustPlatform.buildRustPackage rec {
   name = "ogle-${version}";
-  version = "1.3.1";
+  version = "v1.3.4";
 
   src = fetchFromGitHub {
     owner = "lpenz";
     repo = "ogle";
     rev = "${version}";
-    sha256 = "sha256:0lwv4d683dzc8gc70ms0532rs17fxy87a5xcs0v9bq7ghypazcjv";
+    sha256 = "sha256:1jw51h9ic9y6m78qlbhwznv14dd4v8gx1f9pv6gvy57hva6xjh81";
   };
 
-  cargoSha256 = "sha256:0qpda0krkk1hmv8xspij1px56ghn05ak15a3njqcv33zj7qlsba7";
+  cargoSha256 = "sha256:07mvy5yd8q59ml6mvm1fn10d9dvhw5p1yv9l26z6yxdikfdz3dlm";
 }

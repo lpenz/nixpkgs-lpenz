@@ -3,8 +3,6 @@
 nixpkgs-lpenz
 =============
 
-## About
-
 This is my overlay/extension of nixpkgs, with a binary cache. It's
 built from [this](https://github.com/lpenz/nixpkgs-lpenz/) github
 repository by using [travis-ci](https://travis-ci.com) and it's
@@ -36,3 +34,4 @@ You can now test it by installing [execpermfix](http://github.com/lpenz/execperm
 ~~~[.sh]
 nix-env -iA nixpkgs-lpenz.execpermfix
 ~~~
+
