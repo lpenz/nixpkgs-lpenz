@@ -1,6 +1,4 @@
-FROM nixorg/nix
-
-RUN set -e -x; echo 'http2 = false' >> /etc/nix/nix.conf
+FROM nixpkgs/nix
 
 RUN set -e -x; \
     nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs; \

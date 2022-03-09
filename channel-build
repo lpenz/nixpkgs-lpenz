@@ -27,8 +27,11 @@ mapfile -t OUT_PATHS < <( nix-build )
 : Populate cache
 export NIX_SECRET_KEY_FILE="$PWD/nix-cache-priv-key.pem"
 echo "$NIX_CACHE_PRIV_KEY" > "$NIX_SECRET_KEY_FILE"
-nix sign-paths -k "$NIX_SECRET_KEY_FILE" "${OUT_PATHS[@]}"
-nix copy --to "file:///$PWD/$OUTPUT/cache" "${OUT_PATHS[@]}"
-nix path-info --store "file:///$PWD/$OUTPUT/cache" --json
+NIXCMD=( nix --extra-experimental-features nix-command )
+"${NIXCMD[@]}" store sign -k "$NIX_SECRET_KEY_FILE" "${OUT_PATHS[@]}"
+nix-env -i findutils
+find "$PWD/$OUTPUT/cache"
+"${NIXCMD[@]}" copy --to "file://$PWD/$OUTPUT/cache" "${OUT_PATHS[@]}"
+"${NIXCMD[@]}" path-info --store "file://$PWD/$OUTPUT/cache" --json
 : Done
 
