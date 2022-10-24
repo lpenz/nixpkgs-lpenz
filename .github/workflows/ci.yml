@@ -1,22 +1,22 @@
 ---
 name: CI
-on: [ push, pull_request ]
+on: [ workflow_dispatch, push, pull_request ]
 jobs:
   omnilint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: docker://lpenz/omnilint:v0.2
+      - uses: actions/checkout@v3.1.0
+      - uses: docker://lpenz/omnilint:0.5
   nix-channel-deploy:
     needs: omnilint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3.1.0
       - uses: ./.github/actions/nix-channel-build
         env:
           NIX_CACHE_PRIV_KEY: ${{ secrets.NIX_CACHE_PRIV_KEY }}
       - name: deploy
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+        uses: JamesIves/github-pages-deploy-action@v4.4.1
         if: github.ref == 'refs/heads/main'
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
