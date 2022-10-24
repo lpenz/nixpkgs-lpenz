@@ -1,0 +1,61 @@
+{
+  "nodes": {
+    "execpermfix": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1526505223,
+        "narHash": "sha256-EDb/qcgZ9FMA4bQpUCle9Gte8H2sb3IzW6Z7bGcT760=",
+        "owner": "lpenz",
+        "repo": "execpermfix",
+        "rev": "dc53d84767f561cd10361b7dc41142c8e67a8810",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lpenz",
+        "ref": "1.0.7",
+        "repo": "execpermfix",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1666603677,
+        "narHash": "sha256-apAEIj+z1iwMaMJ4tB21r/VTetfGDLDzuhXRHJknIAU=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "074da18a72269cc5a6cf444dce42daea5649b2fe",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "ogle": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1628457320,
+        "narHash": "sha256-AUHZjdrwFL+f2Te50B/apDUStv0cLorRqcYnFhMMhcs=",
+        "owner": "lpenz",
+        "repo": "ogle",
+        "rev": "dd653f9cbe2f8af2ec6da662627f532da1a62997",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lpenz",
+        "ref": "v1.3.4",
+        "repo": "ogle",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "execpermfix": "execpermfix",
+        "nixpkgs": "nixpkgs",
+        "ogle": "ogle"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

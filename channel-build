@@ -12,6 +12,12 @@ fi
 
 set -e -x -o pipefail
 
+: Fix HOME in github action environment:
+export HOME=/root
+: Add nix profile bin to PATH:
+PATH="$PATH:$HOME/.nix-profile/bin"
+cat "$HOME/.config/nix/nix.conf"
+
 mkdir -p "$OUTPUT/cache"
 
 : Create channel files
@@ -19,19 +25,32 @@ tar -cJf "$OUTPUT/nixexprs.tar.xz" ./*.nix \
     --transform "s,^,${PWD##*/}/," \
     --owner=0 --group=0 --mtime="1970-01-01 00:00:00 UTC"
 touch "$OUTPUT/index.html"
-printf 'https://www.lpenz.org/nixpkgs-lpenz/cache' > "$OUTPUT/binary-cache-url"
+printf 'https://www.lpenz.org/nixpkgs-lpenz/cache' >"$OUTPUT/binary-cache-url"
 
 : Build
-mapfile -t OUT_PATHS < <( nix-build )
+BUILDS='.'
+
+nix build "${BUILDS[@]}"
+
+mapfile -t DERIVATIONS < <(
+    set -e -o pipefail
+    echo "${BUILDS[@]}" | xargs nix path-info --derivation
+)
+echo derivations: "${DERIVATIONS[@]}"
+
+mapfile -t DEPENDENCIES < <(
+    set -e -o pipefail
+    echo "${DERIVATIONS[@]}" | xargs nix-store --query --requisites --include-outputs
+)
+echo dependencies: "${DEPENDENCIES[@]}"
+
+: Create key file
+export NIX_SECRET_KEY_FILE="/tmp/nix-cache-priv-key.pem"
+echo "$NIX_CACHE_PRIV_KEY" >"$NIX_SECRET_KEY_FILE"
+trap 'rm -f $NIX_SECRET_KEY_FILE' EXIT
 
 : Populate cache
-export NIX_SECRET_KEY_FILE="$PWD/nix-cache-priv-key.pem"
-echo "$NIX_CACHE_PRIV_KEY" > "$NIX_SECRET_KEY_FILE"
-NIXCMD=( nix --extra-experimental-features nix-command )
-"${NIXCMD[@]}" store sign -k "$NIX_SECRET_KEY_FILE" "${OUT_PATHS[@]}"
-nix-env -i findutils
-find "$PWD/$OUTPUT/cache"
-"${NIXCMD[@]}" copy --to "file://$PWD/$OUTPUT/cache" "${OUT_PATHS[@]}"
-"${NIXCMD[@]}" path-info --store "file://$PWD/$OUTPUT/cache" --json
-: Done
+nix store sign --key-file "${NIX_SECRET_KEY_FILE}" --recursive
+echo "${DEPENDENCIES[@]}" | xargs nix copy --to "file://$PWD/$OUTPUT/cache"
 
+: Done
