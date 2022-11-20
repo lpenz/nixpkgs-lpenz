@@ -1,0 +1,10 @@
+StorePath: /nix/store/8vl6gva14294pmk3fxg233n5lnda609f-ogle-v1.3.4
+URL: nar/0bg6l94bimyxcr7aqfcffdigc1pqpj22kdyybbn8r4wm5zfp4320.nar.xz
+Compression: xz
+FileHash: sha256:0bg6l94bimyxcr7aqfcffdigc1pqpj22kdyybbn8r4wm5zfp4320
+FileSize: 516728
+NarHash: sha256:0p5ishn7fbk7vxkyvm9zprrj5vr27bs6mdcvp26zdg774xxhr0yf
+NarSize: 1873000
+References: nprym6lf8lzhp1irb42lb4vp8069l5rj-glibc-2.32-54
+Deriver: 6cavrmzc2zxlfgzyld5vv0m4fg7jrdzg-ogle-v1.3.4.drv
+Sig: lpenz.org:pNFQNjoYQCoyzQPDksaQa8BM3hl4/fJCVfvqCM/e+KN8qw+zztJ0GwzE8NYGgpluYpzhMSuSnj8f/LZBq1a+Dg==
